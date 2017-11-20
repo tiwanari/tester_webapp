@@ -18,8 +18,23 @@ func (r *Renderer) Render(w io.Writer, name string, data interface{}, c echo.Con
 }
 
 func getIndex(c echo.Context) error {
-	log.Printf("init")
+	log.Printf("index")
 	return c.Render(http.StatusOK, "index", map[string]interface{}{})
+}
+
+func getSubA(c echo.Context) error {
+	log.Printf("sub_a")
+	return c.Render(http.StatusOK, "sub_a", map[string]interface{}{})
+}
+
+func getSubB(c echo.Context) error {
+	log.Printf("sub_b")
+	return c.Render(http.StatusOK, "sub_b", map[string]interface{}{})
+}
+
+func getSubC(c echo.Context) error {
+	log.Printf("sub_c")
+	return c.Render(http.StatusOK, "sub_c", map[string]interface{}{})
 }
 
 func main() {
@@ -29,6 +44,9 @@ func main() {
 	}
 
 	e.GET("/", getIndex)
+	e.GET("/sub_a", getSubA)
+	e.GET("/sub_b", getSubB)
+	e.GET("/sub_c", getSubC)
 
 	e.Start(":5000")
 }
